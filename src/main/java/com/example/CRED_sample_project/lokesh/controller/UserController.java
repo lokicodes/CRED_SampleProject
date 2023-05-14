@@ -40,7 +40,12 @@ public class UserController {
     @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id)
     {
-        return service.hardDeleteUser(id);
+        return service.softDeleteUser(id);
     }
 
+    @DeleteMapping("/hardDelete/id")
+    public String hardDeleteUser(@PathVariable int id)
+    {
+        return service.hardDeleteUser(id);
+    }
 }

@@ -1,10 +1,13 @@
 package com.example.CRED_sample_project.lokesh.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Where;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "User")
+@Where(clause = "deleted = false")
 public class User {
     @Id
     @SequenceGenerator(
@@ -19,6 +22,7 @@ public class User {
     private String name;
     private String email;
     private Integer age;
+    private boolean deleted = Boolean.FALSE;
 
     public User(){}
     public User(Integer id, String name, String email, Integer age) {
@@ -58,6 +62,14 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean del) {
+        deleted = del;
     }
 
     @Override

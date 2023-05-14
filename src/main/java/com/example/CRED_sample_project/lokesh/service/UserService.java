@@ -30,7 +30,15 @@ public class UserService {
     public String hardDeleteUser(int id)
     {
         repository.deleteById(id);
-        return "User having id: " + id + " deleted!";
+        return "User having id: " + id + " deleted permanently!";
+    }
+
+    public String softDeleteUser(int id)
+    {
+        User existingUser = repository.findById(id).orElse(null);
+        existingUser.setDeleted(true);
+        repository.save(existingUser);
+        return "User having id:" + id + " deleted softly!";
     }
 
     public User updateUser(User changedUser)
